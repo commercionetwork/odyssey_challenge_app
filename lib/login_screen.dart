@@ -1,8 +1,11 @@
-import 'package:biometric_storage/biometric_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lumberdash/lumberdash.dart';
+import 'package:odyssey_challenge_app/cubits/cubit/auth_cubit.dart';
+import 'package:odyssey_challenge_app/helpers/dialog_helper.dart';
+import 'package:odyssey_challenge_app/repositories/layout_repository.dart';
 
-import 'widgets/base_scaffold_widget.dart';
+import 'cubits/cubit/auth_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key}) : super(key: key);
@@ -22,46 +25,68 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffoldWidget(
-      bodyWidget: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Spacer(flex: 3),
-            const Expanded(
-              child: Text(
-                'PIN',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32.0,
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.repository<LayoutRepository>().width(context),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Spacer(flex: 3),
+              const Expanded(
+                child: Text(
+                  'Pincode for card',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32.0,
+                  ),
                 ),
               ),
-            ),
-            const Spacer(),
-            Expanded(
-              child: TextFormField(
-                controller: _pinTextEditingCtrl,
-                validator: _validatePin,
+              const Spacer(),
+              Expanded(
+                child: TextFormField(
+                  controller: _pinTextEditingCtrl,
+                  validator: context.bloc<AuthCubit>().validatePin,
+                ),
               ),
-            ),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('Authenticate'),
+              const Spacer(),
+              BlocConsumer<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthFailure) {
+                    showErrorDialog(
+                        context: context, description: 'Invalid PIN');
+                  }
+
+                  if (state is AuthError) {
+                    logError(state.error, stacktrace: state.stackTrace);
+                    showErrorDialog(
+                      context: context,
+                      description: state.error.toString(),
+                    );
+                  }
+
+                  if (state is PharmaUserAuthenticated ||
+                      state is DriverUserAuthenticated) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  }
+                },
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: () => context
+                        .bloc<AuthCubit>()
+                        .authenticate(pin: _pinTextEditingCtrl.text),
+                    child: const Text('Authenticate'),
+                  );
+                },
               ),
-            ),
-            const Spacer(flex: 3),
-          ],
+              const Spacer(flex: 4),
+            ],
+          ),
         ),
       ),
     );
   }
-}
-
-String _validatePin(String value) {
-  if (value.length < 4) {
-    return 'The PIN should have at least a length of 4.';
-  }
-
-  return null;
 }

@@ -17,7 +17,7 @@ class BaseDrawerWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Amadeo',
+                  'Odyssey Challenge App',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
@@ -26,7 +26,7 @@ class BaseDrawerWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 22.0),
                   child: Text(
-                    'Starter/cookbook Flutter projec for Commercio.network.',
+                    'Projec for the Odyssey 2020 challenge.',
                     style: TextStyle(
                       color: Colors.white,
                       fontStyle: FontStyle.italic,
@@ -73,8 +73,8 @@ class BaseDrawerWidget extends StatelessWidget {
           ),
           const Divider(),
           const AboutListTile(
-            applicationName: 'Amadeo',
-            applicationVersion: '0.2.0',
+            applicationName: 'Odyssey Challenge App',
+            applicationVersion: '0.0.1',
           )
         ],
       ),

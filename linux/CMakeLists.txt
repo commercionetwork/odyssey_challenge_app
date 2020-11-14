@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "Amadeo")
+set(BINARY_NAME "Odyssey Challenge App")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -6,6 +6,7 @@ final ThemeData companyTheme = ThemeData(
   primaryColorBrightness: Brightness.light,
   accentColor: CompanyColors.primary[1300],
   scaffoldBackgroundColor: Colors.white,
+  bottomAppBarColor: Colors.white,
   fontFamily: 'Lato',
 );
 
@@ -15,7 +16,14 @@ final ThemeData companyDarkTheme = ThemeData(
   primaryColorBrightness: Brightness.dark,
   accentColor: CompanyColors.primary[1300],
   scaffoldBackgroundColor: CompanyColors.primary[500],
+  bottomAppBarColor: CompanyColors.primary[300],
   fontFamily: 'Lato',
+  textTheme: const TextTheme(
+    bodyText1: TextStyle(color: Colors.white),
+    bodyText2: TextStyle(
+      color: Colors.white,
+    ),
+  ),
 );
 
 class CompanyColors {

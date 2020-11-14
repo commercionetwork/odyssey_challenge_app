@@ -1,13 +1,8 @@
-import 'package:commercio_ui/commercio_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:odyssey_challenge_app/helpers/sign_bloc/sign_bloc.dart';
-import 'package:odyssey_challenge_app/helpers/sign_constants.dart';
 import 'package:odyssey_challenge_app/login_screen.dart';
-import 'package:odyssey_challenge_app/pages/export.dart';
-import 'package:odyssey_challenge_app/repositories/document_repository.dart';
 import 'package:odyssey_challenge_app/utils/style.dart';
+import 'package:odyssey_challenge_app/widgets/base_scaffold_widget.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -22,45 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (_) => const LoginScreen(),
-        '/1-account': (_) => const CommercioAccountPage(),
-        '/1-account/generate-new-wallet': (_) => const GenerateNewWalletPage(),
-        '/1-account/restore-wallet-from-mnemonic': (_) =>
-            const RestoreWalletFromMnemonicPage(),
-        '/1-account/restore-wallet-from-secure-storage': (_) =>
-            const RestoreWalletFromSecureStoragePage(),
-        '/1-account/share-qr-code': (_) => const ShareQRCodePage(),
-        '/1-account/request-invite-free-tokens': (_) =>
-            const RequestInviteFreeTokensPage(),
-        '/1-account/check-account-balance': (_) =>
-            const CheckAccountBalancePage(),
-        '/1-account/send-tokens': (_) => const SendTokensPage(),
-        '/1-account/generate-many-addresses': (_) =>
-            const GenerateManyAddressesPage(),
-        '/2-id': (_) => const CommercioIdPage(),
-        '/2-id/create-ddo': (_) => const CreateDDOPage(),
-        '/2-id/request-powerup': (_) => const RequestPowerupPage(),
-        '/3-docs': (_) => const CommercioDocsPage(),
-        '/3-docs/share-doc': (_) => const ShareDocPage(),
-        '/3-docs/send-receipt': (_) => const SendReceiptPage(),
-        '/3-docs/document-list': (_) => const DocumentListPage(),
-        '/3-docs/receipt-list': (_) => const ReceiptListPage(),
-        '/4-sign': (_) => BlocProvider(
-              create: (_) => SignBloc(
-                commercioDocs: context.repository<StatefulCommercioDocs>(),
-                commercioId: context.repository<StatefulCommercioId>(),
-                documentRepository: context.repository<DocumentRepository>(),
-                dsbPort: commercioDsbDevPort,
-                dsbSignerAddress: commercioDsbDevSigner,
-                dsbUrl: commercioDsbDevUrl,
-              ),
-              child: const CommercioSignPage(),
-            ),
-        '/5-mint': (_) => const CommercioMintPage(),
-        '/5-mint/open-cdp': (_) => const OpenCdpPage(),
-        '/5-mint/close-cdp': (_) => const CloseCdpPage(),
-        '/6-kyc': (_) => const CommercioKYCPage(),
-        '/6-kyc/buy-membership': (_) => const BuyMembershipPage(),
-        '/6-kyc/invite-member': (_) => const InviteMemberPage(),
+        '/home': (_) => const BaseScaffoldWidget(),
       },
     );
   }

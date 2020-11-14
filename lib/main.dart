@@ -1,3 +1,5 @@
+import 'package:odyssey_challenge_app/cubits/cubit/auth_cubit.dart';
+import 'package:odyssey_challenge_app/cubits/scaffold_navigator_cubit.dart';
 import 'package:odyssey_challenge_app/helpers/net_helper.dart';
 import 'package:odyssey_challenge_app/my_app.dart';
 import 'package:odyssey_challenge_app/repositories/dialog_warnings_repository.dart';
@@ -62,7 +64,13 @@ void main() {
         RepositoryProvider(create: (_) => DialogWarningsRepository()),
         RepositoryProvider(create: (_) => const KeysRepository()),
       ],
-      child: const MyApp(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => AuthCubit()),
+          BlocProvider(create: (_) => ScaffoldNavigatorCubit()),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }

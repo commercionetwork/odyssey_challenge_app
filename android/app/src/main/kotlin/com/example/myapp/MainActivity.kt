@@ -1,4 +1,4 @@
-package network.commercio.amadeo
+package com.odyssey.challenge_app
 
 import io.flutter.embedding.android.FlutterActivity
 
