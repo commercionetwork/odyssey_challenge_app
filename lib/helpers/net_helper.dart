@@ -5,8 +5,6 @@ extension ChainNetExt on ChainNet {
     switch (this) {
       case ChainNet.dev:
         return 'Dev-Net';
-      case ChainNet.test:
-        return 'Test-Net';
       default:
         return null;
     }
@@ -15,9 +13,7 @@ extension ChainNetExt on ChainNet {
   String get lcdUrl {
     switch (this) {
       case ChainNet.dev:
-        return 'https://lcd-demo.commercio.network';
-      case ChainNet.test:
-        return 'https://lcd-testnet.commercio.network';
+        return 'http://178.62.202.95:1317';
       default:
         return null;
     }
@@ -26,9 +22,7 @@ extension ChainNetExt on ChainNet {
   String get faucetDomain {
     switch (this) {
       case ChainNet.dev:
-        return 'faucet-devnet.commercio.network';
-      case ChainNet.test:
-        return 'faucet-testnet.commercio.network';
+        return 'faucet.localhost';
       default:
         return null;
     }
