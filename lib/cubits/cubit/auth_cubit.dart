@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 
 part 'auth_state.dart';
 
-const pharmaUserPin = '1234';
-const driverUserPin = '4321';
+const pharmaUserPin = '0000';
+const driverUserPin = '1111';
 
 const merckMnemonic =
     'better runway ski scissors marriage luggage direct cousin asset ill panel cattle bargain dog inquiry trigger anxiety film curve click romance hurdle road already';
