@@ -1,6 +1,5 @@
 import 'package:odyssey_challenge_app/helpers/net_helper.dart';
 import 'package:commercio_ui/commercio_ui.dart';
-import 'package:commerciosdk/export.dart' as sdk;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,7 +33,7 @@ class BaseAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               padding: const EdgeInsets.only(right: 12.0),
               child: PopupMenuButton<ChainNet>(
                 onSelected: (ChainNet result) {
-                  commercioAccount.networkInfo = sdk.NetworkInfo(
+                  commercioAccount.networkInfo = NetworkInfo(
                     bech32Hrp: result.bech32Hrp,
                     lcdUrl: result.lcdUrl,
                   );

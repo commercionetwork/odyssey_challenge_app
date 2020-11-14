@@ -47,6 +47,7 @@ class _BaseScaffoldWidgetState extends State<BaseScaffoldWidget> {
         bottomNavigationBar:
             BlocBuilder<ScaffoldNavigatorCubit, ScaffoldNavigatorState>(
           builder: (_, state) => DefaultBottomNavigationBar(
+            // ignore: deprecated_member_use
             onTap: context.bloc<ScaffoldNavigatorCubit>().changeRoute,
             selectedIndex: () =>
                 (state as ScaffoldNavigatorChangedRoute).selectedIndex,
@@ -55,6 +56,7 @@ class _BaseScaffoldWidgetState extends State<BaseScaffoldWidget> {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(
+              // ignore: deprecated_member_use
               horizontal: context.repository<LayoutRepository>().width(context),
             ),
             child: BlocConsumer<ScaffoldNavigatorCubit, ScaffoldNavigatorState>(
@@ -63,6 +65,7 @@ class _BaseScaffoldWidgetState extends State<BaseScaffoldWidget> {
                     (state as ScaffoldNavigatorChangedRoute).selectedIndex;
 
                 if (idx == 2) {
+                  // ignore: deprecated_member_use
                   context.bloc<AuthCubit>().logout();
                 }
               },
