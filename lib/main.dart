@@ -2,7 +2,6 @@ import 'package:odyssey_challenge_app/cubits/cubit/auth_cubit.dart';
 import 'package:odyssey_challenge_app/cubits/scaffold_navigator_cubit.dart';
 import 'package:odyssey_challenge_app/helpers/net_helper.dart';
 import 'package:odyssey_challenge_app/my_app.dart';
-import 'package:odyssey_challenge_app/repositories/dialog_warnings_repository.dart';
 import 'package:odyssey_challenge_app/repositories/document_repository.dart';
 import 'package:odyssey_challenge_app/repositories/keys_repository.dart';
 import 'package:odyssey_challenge_app/repositories/layout_repository.dart';
@@ -61,7 +60,6 @@ void main() {
         RepositoryProvider(create: (_) => DocumentRepository()),
         RepositoryProvider(create: (_) => SdnSelectedDataRepository()),
         RepositoryProvider(create: (_) => LayoutRepository()),
-        RepositoryProvider(create: (_) => DialogWarningsRepository()),
         RepositoryProvider(create: (_) => const KeysRepository()),
       ],
       child: MultiBlocProvider(
