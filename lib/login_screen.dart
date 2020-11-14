@@ -1,3 +1,4 @@
+import 'package:commercio_ui/commercio_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lumberdash/lumberdash.dart';
@@ -53,32 +54,48 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const Spacer(),
-              BlocConsumer<AuthCubit, AuthState>(
+              BlocConsumer<CommercioAccountRestoreWalletBloc,
+                  CommercioAccountRestoredWalletState>(
                 listener: (context, state) {
-                  if (state is AuthFailure) {
-                    showErrorDialog(
-                        context: context, description: 'Invalid PIN');
-                  }
-
-                  if (state is AuthError) {
-                    logError(state.error, stacktrace: state.stackTrace);
-                    showErrorDialog(
-                      context: context,
-                      description: state.error.toString(),
-                    );
-                  }
-
-                  if (state is PharmaUserAuthenticated ||
-                      state is DriverUserAuthenticated) {
+                  if (state is CommercioAccountRestoredWalletStateData) {
                     Navigator.pushReplacementNamed(context, '/home');
                   }
                 },
                 builder: (context, state) {
-                  return ElevatedButton(
-                    onPressed: () => context
-                        .bloc<AuthCubit>()
-                        .authenticate(pin: _pinTextEditingCtrl.text),
-                    child: const Text('Authenticate'),
+                  if (state is CommercioAccountRestoredWalletStateLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  return BlocConsumer<AuthCubit, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthFailure) {
+                        showErrorDialog(
+                            context: context, description: 'Invalid PIN');
+                      }
+
+                      if (state is AuthError) {
+                        logError(state.error, stacktrace: state.stackTrace);
+                        showErrorDialog(
+                          context: context,
+                          description: state.error.toString(),
+                        );
+                      }
+
+                      if (state is PharmaUserAuthenticated ||
+                          state is DriverUserAuthenticated) {
+                        context.bloc<CommercioAccountRestoreWalletBloc>().add(
+                            CommercioAccountRestoreWalletEvent(
+                                mnemonic: (state as dynamic).mnemonic));
+                      }
+                    },
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed: () => context
+                            .bloc<AuthCubit>()
+                            .authenticate(pin: _pinTextEditingCtrl.text),
+                        child: const Text('Authenticate'),
+                      );
+                    },
                   );
                 },
               ),

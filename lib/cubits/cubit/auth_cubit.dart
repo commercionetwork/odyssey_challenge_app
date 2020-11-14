@@ -7,6 +7,11 @@ part 'auth_state.dart';
 const pharmaUserPin = '1234';
 const driverUserPin = '4321';
 
+const merckMnemonic =
+    'better runway ski scissors marriage luggage direct cousin asset ill panel cattle bargain dog inquiry trigger anxiety film curve click romance hurdle road already';
+const dhlMnemonic =
+    'dream express verb mirror bulk slight fringe crash tornado like series minor art shaft slender reunion kiwi nurse dry pole leopard image infant modify';
+
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const AuthInitial());
 
@@ -23,9 +28,9 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       if (pin == pharmaUserPin) {
-        return emit(const PharmaUserAuthenticated());
+        return emit(const PharmaUserAuthenticated(mnemonic: merckMnemonic));
       } else if (pin == driverUserPin) {
-        return emit(const DriverUserAuthenticated());
+        return emit(const DriverUserAuthenticated(mnemonic: dhlMnemonic));
       } else {
         return emit(const AuthFailure());
       }

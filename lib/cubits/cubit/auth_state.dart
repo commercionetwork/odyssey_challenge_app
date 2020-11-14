@@ -19,17 +19,21 @@ class AuthLoading extends AuthState {
 }
 
 class PharmaUserAuthenticated extends AuthState {
-  const PharmaUserAuthenticated();
+  const PharmaUserAuthenticated({@required this.mnemonic});
+
+  final String mnemonic;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [mnemonic];
 }
 
 class DriverUserAuthenticated extends AuthState {
-  const DriverUserAuthenticated();
+  const DriverUserAuthenticated({@required this.mnemonic});
+
+  final String mnemonic;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [mnemonic];
 }
 
 class LoggedOut extends AuthState {
