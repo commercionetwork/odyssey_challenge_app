@@ -1,0 +1,31 @@
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
+
+  strong-mode:
+    - implicit-casts: false
+    - implicit-dynamic: false
+  
+linter:
+  rules:
+    - always_declare_return_types
+    - close_sinks
+    - hash_and_equals
+    - join_return_with_assignment
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - prefer_final_fields
+    - prefer_final_in_for_each
+    - prefer_final_locals
+    - unnecessary_parenthesis
+    - unnecessary_raw_strings
+    - unnecessary_string_escapes
+    - unnecessary_string_interpolations
+    - use_key_in_widget_constructors
+    - use_string_buffers
+    - void_checks
