@@ -21,27 +21,6 @@ type MsgTransferNFT struct {
 }
 ```
 
-## MsgEditNFTMetadata
-
-This message type allows the `TokenURI` to be updated. By default anyone can execute this Message type. **It is highly recommended that a custom handler is made to restrict use of this Message type to prevent unintended use.**
-
-| **Field**   | **Type**         | **Description**                                                                                            |
-|:------------|:-----------------|:-----------------------------------------------------------------------------------------------------------|
-| Sender       | `sdk.AccAddress` | The creator of the message                                      |
-| ID          | `string`         | The unique ID of the NFT being edited                                                                      |
-| Denom       | `string`         | The denomination of the NFT, necessary as multiple denominations are able to be represented on each chain. |
-| TokenURI    | `string`         | The URI pointing to a JSON object that contains subsequent metadata information off-chain                   |
-
-```go
-// MsgEditNFTMetadata edits an NFT's metadata
-type MsgEditNFTMetadata struct {
-  Sender       sdk.AccAddress
-  ID          string
-  Denom       string
-  TokenURI    string
-}
-```
-
 ## MsgMintNFT
 
 This message type is used for minting new tokens. If a new `NFT` is minted under a new `Denom`, a new `Collection` will also be created, otherwise the `NFT` is added to the existing `Collection`. If a new `NFT` is minted by a new account, a new `Owner` is created, otherwise the `NFT` `ID` is added to the existing `Owner`'s `IDCollection`. By default anyone can execute this Message type. **It is highly recommended that a custom handler is made to restrict use of this Message type to prevent unintended use.**
